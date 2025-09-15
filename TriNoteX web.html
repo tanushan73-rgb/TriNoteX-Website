@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriNoteX - Download Now</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0e1a, #1a2035);
+            color: #f1f5f9;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Header styles */
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            animation: fadeInDown 1.5s ease;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #22d3ee, #a78bfa, #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 70px rgba(34, 211, 238, 0.6);
+            animation: pulse 3s infinite, rotate 20s linear infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(34, 211, 238, 0.6), transparent 30%);
+            animation: rotate 3s linear infinite;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: 80px;
+            z-index: 1;
+            background: #0a0e1a;
+            border-radius: 50%;
+            padding: 15px;
+        }
+        
+        h1 {
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa, #34d399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 2s infinite alternate, textShine 5s infinite;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa, #34d399);
+            border-radius: 10px;
+            animation: scaleX 3s infinite alternate;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 2s ease;
+        }
+        
+        /* Development Note */
+        .dev-note {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 3rem auto;
+            max-width: 700px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+        
+        .dev-note i {
+            color: #ffc107;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .dev-note h3 {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .dev-note p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        /* Instructions Section */
+        .instructions {
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+        
+        .instructions h3 {
+            color: #22d3ee;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .instructions ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .instructions a {
+            color: #a78bfa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .instructions a:hover {
+            color: #22d3ee;
+            text-decoration: underline;
+        }
+        
+        /* Download section */
+        .download-section {
+            text-align: center;
+            margin: 5rem 0;
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .download-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .download-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%); 
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa);
+            border-radius: 10px;
+        }
+        
+        .platforms {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+        
+        .platform-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            width: 320px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: fadeIn 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa, #34d399);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .platform-card.windows {
+            animation-delay: 0.2s;
+        }
+        
+        .platform-card.linux {
+            animation-delay: 0.4s;
+        }
+        
+        .platform-card.android {
+            animation-delay: 0.6s;
+        }
+        
+        .platform-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .platform-name {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .platform-desc {
+            margin-bottom: 1.5rem;
+            min-height: 60px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(34, 211, 238, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(34, 211, 238, 0.6);
+        }
+        
+        .coming-soon {
+            background: linear-gradient(90deg, #64748b, #94a3b8);
+            cursor: not-allowed;
+        }
+        
+        .auto-detect {
+            font-size: 1rem;
+            margin-top: 1rem;
+            color: #22d3ee;
+            background: rgba(34, 211, 238, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 6rem;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa);
+            border-radius: 10px;
+        }
+        
+        .team-name {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #a78bfa;
+            font-weight: 600;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 0 70px rgba(34, 211, 238, 0.6);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 90px rgba(34, 211, 238, 0.8);
+            }
+            100% { 
+                transform: scale(1);
+                box-shadow: 0 0 70px rgba(34, 211, 238, 0.6);
+            }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
+            to { text-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 30px rgba(34, 211, 238, 0.6); }
+        }
+        
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes scaleX {
+            from { transform: scaleX(0.5); }
+            to { transform: scaleX(1); }
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(200%) rotate(45deg); }
+        }
+        
+        /* Floating animation */
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .download-title {
+                font-size: 2.2rem;
+            }
+            
+            .platforms {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .platform-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .dev-note {
+                margin: 2rem 1rem;
+                padding: 1rem;
+            }
+            
+            .instructions {
+                margin: 2rem 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo floating">
+                <!-- YAHAN APNA LOGO DALNA - logo.png ya logo.jpg naam ki file -->
+                <!-- Agar online host kiya hai toh: <img src="https://example.com/logo.png"> -->
+                <img src="https://drive.google.com/uc?export=view&id=1YiO1BbVzWKwDCvgzq3DoYnZD2JLpgWF-" alt="TriNoteX Logo">
+            </div>
+            <h1>TriNoteX</h1>
+            <p class="tagline">Revolutionizing the way students share and monetize their notes</p>
+        </header>
+        
+        <!-- Development Note -->
+        <div class="dev-note floating">
+            <i class="fas fa-tools"></i>
+            <h3>App in Development</h3>
+            <p>We're currently working hard to bring you the best experience. The Windows version is available for testing, while Linux and Android versions are coming soon. Your feedback will help us improve!</p>
+        </div>
+        
+        <!-- Instructions Section -->
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> How to Download & Use</h3>
+            <ol>
+                <li>Click the <strong>Download for Windows</strong> button below</li>
+                <li>If the download doesn't start automatically, <a href="#" id="directLink">click here for direct download</a></li>
+                <li>Run the <code>TriNoteX Setup 1.0.0.exe</code> file after downloading</li>
+                <li>Follow the installation instructions</li>
+                <li>Launch TriNoteX and start using the app!</li>
+            </ol>
+            <p><strong>Note:</strong> The setup file works on both 32-bit and 64-bit Windows systems.</p>
+        </div>
+        
+        <section class="download-section">
+            <h2 class="download-title">Download Our App</h2>
+            
+            <div class="platforms">
+                <div class="platform-card windows floating">
+                    <div class="platform-icon">🪟</div>
+                    <h3 class="platform-name">Windows</h3>
+                    <p class="platform-desc">Full featured desktop application with advanced note management</p>
+                    <p class="auto-detect">Both x32 and x64 auto-detected</p>
+                    
+                    <!-- YAHAN APNA .EXE SETUP DALNA -->
+                    <!-- Agar online host kiya hai toh: <a href="https://example.com/TriNoteX_Setup.exe" class="download-btn"> -->
+                    <a href="https://drive.google.com/uc?export=download&id=1Qh6d5142QFnoOJZfhIAc4-AllWSP6w1M" class="download-btn" download>
+                        <i class="fas fa-download"></i> Download for Windows
+                    </a>
+                </div>
+                
+                <div class="platform-card linux floating" style="animation-delay: 0.2s;">
+                    <div class="platform-icon">🐧</div>
+                    <h3 class="platform-name">Linux</h3>
+                    <p class="platform-desc">Native Linux version with terminal integration</p>
+                    <a class="download-btn coming-soon">
+                        <i class="fas fa-clock"></i> Coming Soon
+                    </a>
+                </div>
+                
+                <div class="platform-card android floating" style="animation-delay: 0.4s;">
+                    <div class="platform-icon">🤖</div>
+                    <h3 class="platform-name">Android</h3>
+                    <p class="platform-desc">Mobile app with offline access and sync</p>
+                    <a class="download-btn coming-soon">
+                        <i class="fas fa-clock"></i> Coming Soon
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p class="team-name">TriNoteX Team</p>
+            <p class="copyright">© 2025 TriNoteX. All rights reserved. Made with ❤️ for students</p>
+        </footer>
+    </div>
+
+    <!-- Particles.js for background animation -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 100, density: { enable: true, value_area: 1000 } },
+                color: { value: "#22d3ee" },
+                shape: { 
+                    type: "circle",
+                    stroke: { width: 0, color: "#000000" }
+                },
+                opacity: { 
+                    value: 0.7, 
+                    random: true,
+                    anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
+                },
+                size: { 
+                    value: 4, 
+                    random: true,
+                    anim: { enable: true, speed: 3, size_min: 0.5, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#a78bfa",
+                    opacity: 0.4,
+                    width: 1.5
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 1 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Make direct link clickable
+        document.getElementById('directLink').href = document.querySelector('.download-btn').href;
+        
+        // Add scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.platform-card');
+            
+            function checkVisibility() {
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    if (position.top < window.innerHeight && position.bottom >= 0) {
+                        element.style.opacity = 1;
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            // Initial check
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+            
+            // Add gradient animation to text
+            const title = document.querySelector('h1');
+            title.style.backgroundSize = '200% auto';
+        });
+    </script>
+</body>
+</html>
