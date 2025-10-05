@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/TriNoteX web.html"
+      "destination": "/TriNoteX (2).html"
     }
   ],
   "headers": [
@@ -16,4 +16,5 @@
       ]
     }
   ]
+
 }
